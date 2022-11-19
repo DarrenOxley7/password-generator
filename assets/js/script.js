@@ -89,8 +89,24 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options
+//Password must be 10-64 chars in length
+//must be a valid numerical input (valid = true/false)
+//must give user choice for each array (confirm yes/no)
+//must have at least one user selection ()
 function getPasswordOptions() {
-  var userInput = (prompt ('How many characters will your password contain?'))
+  var userInputLength = prompt ('Choose length of your password? Must be between 10 and 64 characters');
+  var lowerCaseChoice = confirm ('Do you want your password to contain lower case letters?');
+  var upperCaseChoice = confirm ('Do you want your password to contain upper case letters?');
+  var numberChoice = confirm ('Do you want your password to contain numbers?');
+  var specialCharChoice = confirm ('Do you want your password to contain special characters?');
+//Create variable object based on the above selections
+  var userChoices = {
+    passwordLength: userInputLength,
+    lowerCaseChoice: lowerCaseChoice,
+    upperCaseChoice: upperCaseChoice,
+    numberChoice: numberChoice,
+    specialCharChoice: specialCharChoice
+  }
 
 }
 
