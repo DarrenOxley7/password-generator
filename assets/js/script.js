@@ -114,10 +114,10 @@ function getPasswordOptions() {
   userChoices = []
 
   for (var index in choices) {
-    if (index == "upperCaseChars" && choices[index])
+    if (index == "uppercaseChars" && choices[index])
       {userChoices = userChoices.concat(upperCasedCharacters)}
 
-    else if (index == "lowerCaseChars" && choices[index])
+    else if (index == "lowercaseChars" && choices[index])
       {userChoices = userChoices.concat(lowerCasedCharacters)}
 
     else if (index == "numericChars" && choices[index])
