@@ -94,19 +94,41 @@ var upperCasedCharacters = [
 //must give user choice for each array (confirm yes/no)
 //must have at least one user selection ()
 function getPasswordOptions() {
-  var userInputLength = prompt ('Choose length of your password? Must be between 10 and 64 characters');
-  var lowerCaseChoice = confirm ('Do you want your password to contain lower case letters?');
-  var upperCaseChoice = confirm ('Do you want your password to contain upper case letters?');
-  var numberChoice = confirm ('Do you want your password to contain numbers?');
-  var specialCharChoice = confirm ('Do you want your password to contain special characters?');
-//Create variable object based on the above selections
-  var userChoices = {
-    passwordLength: userInputLength,
-    lowerCaseChoice: lowerCaseChoice,
-    upperCaseChoice: upperCaseChoice,
-    numberChoice: numberChoice,
-    specialCharChoice: specialCharChoice
+  // User selects the password length
+  var passwordLength = prompt("Please choose the length of your password. Must be between 10 and 64 characters");
+  
+  while (passwordLength < 10 || passwordLength > 64 || isNaN(parseInt(passwordLength))) {
+    var passwordLength = prompt("You need to give number between 10-64!");
   }
+
+  // User chooses character types to use in PW
+  var choices = {
+    "uppercaseChars": confirm ("Would you like your password to contain uppercase letters?"),
+    "lowercaseChars": confirm ("Would you like your password to contain lowercase letters?"),
+    "numericChars": confirm ("Would you like your password to contain numbers?"),
+    "specialChars": confirm ("Would you like your password to contain special characters?"),
+    }
+
+
+  // User selections and starter data arrays concatinated to create final choices array
+  userChoices = []
+
+  for (var index in choices) {
+    if (index == "upperCaseChars" && choices[index])
+      {userChoices = userChoices.concat(upperCasedCharacters)}
+
+    else if (index == "lowerCaseChars" && choices[index])
+      {userChoices = userChoices.concat(lowerCasedCharacters)}
+
+    else if (index == "numericChars" && choices[index])
+      {userChoices = userChoices.concat(numericCharacters)}
+
+    else if (index == "specialChars" && choices[index])
+      {userChoices = userChoices.concat(specialCharacters)}
+  }
+
+  // get a list with choices and length
+  return [userChoices, parseInt(passwordLength)]
 
 }
 
