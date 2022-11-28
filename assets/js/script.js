@@ -98,7 +98,7 @@ function getPasswordOptions() {
   var passwordLength = prompt("Please choose the length of your password. Must be between 10 and 64 characters");
   
   while (passwordLength < 10 || passwordLength > 64 || isNaN(parseInt(passwordLength))) {
-    var passwordLength = prompt("You need to give number between 10-64!");
+    var passwordLength = prompt("You need to type a number between 10 and 64");
   }
 
   // User chooses character types to use in PW
@@ -132,14 +132,22 @@ function getPasswordOptions() {
 
 }
 
-// Function for getting a random element from an array
-function getRandom(arr) {
-
-}
-
 // Function to generate password with user input
 function generatePassword() {
+  userChoicesPasswordLength = getPasswordOptions()
+  // String var for the password to be generated into
+  var generatedPassword = ''
 
+
+  //For the selected length, each for loop picks a character at random from the selected data sets and adds them to the generatedPassord var to give the final password.
+  //negates the need for the getRandom(arr) which has been removed from previous commits
+
+  for (var i=0; i<userChoicesPasswordLength[1]; i++) {
+    passwordElement = userChoicesPasswordLength[0] [Math.floor(Math.random()*userChoicesPasswordLength[0].length)];
+    generatedPassword += passwordElement
+  };
+
+  return generatedPassword
 }
 
 // Get references to the #generate element
